@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "webhook_forwarder"
+version = "0.1.0"
+description = "A FastAPI webhook forwarder with OAuth2 bearer token"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [{ include = "webhook_forwarder" }]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.110.0"
+httpx = "^0.27.0"
+uvicorn = "^0.29.0"
+python-dotenv = "^1.0.1"
+
+[tool.poetry.scripts]
+webhook-forwarder = "webhook_forwarder.main:app"

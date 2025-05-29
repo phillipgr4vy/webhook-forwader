@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Poetry
+.env
+.venv/
+poetry.lock
+
+# Docker
+*.tar
+*.img
+docker-compose.override.yml
+
+# System
+.DS_Store
+.idea/
+.vscode/
