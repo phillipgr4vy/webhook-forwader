@@ -12,7 +12,7 @@ async def get_bearer_token():
         response = await client.post(
             OAUTH_TOKEN_URL,
             data={
-                "grant_type": "client_credentials",
+                "grant_type": "password",
                 "client_id": CLIENT_ID,
                 "client_secret": CLIENT_SECRET,
                 "username": USERNAME,
