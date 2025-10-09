@@ -36,7 +36,7 @@ async def receive_webhook(request: Request):
 
     async with httpx.AsyncClient() as client:
         forward_response = await client.post(FORWARD_URL, json=payload, headers=headers)
-
+    print(forward_response)
     return {
         "status": "forwarded",
         "forward_status": forward_response.status_code
