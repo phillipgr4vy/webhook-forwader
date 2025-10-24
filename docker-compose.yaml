@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  webhook_forwarder:
+    build: .
+    container_name: webhook_forwarder
+    ports:
+      - "8000:8000"
+    environment:
+      # OAuth 2.0 credentials
+      OAUTH_TOKEN_URL: ${OAUTH_TOKEN_URL}
+      CLIENT_ID: ${CLIENT_ID}
+      CLIENT_SECRET: ${CLIENT_SECRET}
+      USERNAME: ${USERNAME}
+      PASSWORD: ${PASSWORD}
+
+      # Target webhook destination
+      FORWARD_URL: ${FORWARD_URL}
+
+    # Optional: restart if it crashes
+    restart: unless-stopped
