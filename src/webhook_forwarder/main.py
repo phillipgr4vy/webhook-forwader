@@ -18,7 +18,7 @@ async def get_bearer_token():
             OAUTH_TOKEN_URL,
             data={
                 "grant_type": "password",
-                "client_id": CLIENT_ID,
+                "client_id": CLIENT_ID, 
                 "client_secret": CLIENT_SECRET,
                 "username": USERNAME,
                 "password": PASSWORD,
@@ -41,7 +41,9 @@ async def receive_webhook(request: Request):
     }
 
     async with httpx.AsyncClient() as client:
-        forward_response = await client.post(FORWARD_URL, json=payload, headers=headers)
+        # Set a longer timeout (e.g., 30 seconds) to allow the downstream service more time to respond.
+        timeout = httpx.Timeout(30.0, connect=15.0)
+        forward_response = await client.post(FORWARD_URL, json=payload, headers=headers, timeout=timeout)
 
     # Log important fields/attributes of the forward_response
     logger.info(f"Webhook forwarding attempt completed. URL: {FORWARD_URL}, Status: {forward_response.status_code}, Headers: {dict(forward_response.headers)}, Body: {forward_response.text}")
