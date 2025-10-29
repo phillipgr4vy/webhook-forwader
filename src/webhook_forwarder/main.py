@@ -42,7 +42,7 @@ async def receive_webhook(request: Request):
 
     async with httpx.AsyncClient() as client:
         # Set a longer timeout (e.g., 30 seconds) to allow the downstream service more time to respond.
-        timeout = httpx.Timeout(30.0, connect=15.0)
+        timeout = httpx.Timeout(60.0, connect=30.0)
         forward_response = await client.post(FORWARD_URL, json=payload, headers=headers, timeout=timeout)
 
     # Log important fields/attributes of the forward_response
